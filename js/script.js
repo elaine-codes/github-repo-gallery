@@ -86,3 +86,24 @@ const displayRepoInfo = function (repoInfo, languages) {
     `;
     repoData.append(div);
 };
+
+viewRepoButton.addEventListener("click", function () {
+    allReposContainer.classList.remove("hide");
+    repoData.classList.add("hide");
+    viewReposButton.classList.add("hide");
+});
+
+filterInput.addEventListener("input", function (e) {
+    const searchText = e.target.value;
+    const repos = document.querySelectorAll(".repo");
+    const searchLowerText = search.Text.toLowerCase();
+
+    for (const repo of repos) {
+        const repoLowerText = repo.innerText.toLowerCase();
+        if (repoLowerEtxt.includes(searchLowerText)) {
+            repo.classList.remove("hide");
+        } else {
+            repo.classList.add("hide");
+        }
+       }
+});
