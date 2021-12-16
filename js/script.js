@@ -31,12 +31,14 @@ const displayUserInfo = function (data) {
     </div> 
     `;
     overview.append(div);
-
+    gitRepos();
 };
 
+//Async function to fecth repo list
 const gitRepos = async function() {
-    const fetcgRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
+    const fetchRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
     const repoData = await fetchRepos.json();
+
     displayRepos(repoData);
 };
 
