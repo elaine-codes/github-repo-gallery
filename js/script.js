@@ -1,17 +1,21 @@
-//Div is for profile information 
+//Where profile info will appear
 const overview = document.querySelector(".overview");
+
 const username = "elaine-codes";
 const repoList = document.querySelector(".repo-list");
 
 
-const fetchInfo = async function () {
+//Async function to fecth info from GitHub
+const getUserInfo = async function () {
     const userInfo = await fetch(`https://api.github.com/users/${username}`);
     const data = await userInfo.json();
     displayUserInfo(data);
+
 };
 
 getUserInfo();
 
+//Fetch and Display User Info
 const displayUserInfo = function (data) {
     const div = document.createElement("div");
     div.classList.add("user-info");
@@ -27,8 +31,8 @@ const displayUserInfo = function (data) {
     </div> 
     `;
     overview.append(div);
-    gitRepos();
-}
+
+};
 
 const gitRepos = async function() {
     const fetcgRepos = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=100`);
@@ -58,12 +62,10 @@ const getRepoInfo = async function (repoName) {
     console.log(repoInfo);
 
     //Get languages
-
     const fetchLanguage = await fetch(repoInfo.languages_url);
     const languageData = await fetchLanguages.json();
 
     // Make a list of languages
-
     const languages = [];
     for (const langauges in languageData) {
         languages.push(langauge);
@@ -91,6 +93,7 @@ viewRepoButton.addEventListener("click", function () {
     allReposContainer.classList.remove("hide");
     repoData.classList.add("hide");
     viewReposButton.classList.add("hide");
+
 });
 
 filterInput.addEventListener("input", function (e) {
